@@ -91,13 +91,60 @@ let customerId = cid as number;
 // customerId = 10;
 
 // Functions
-function addNum(x: number, y: number) {
+function addNum(x: number, y: number): number {
     return x + y;
 }
 
 console.log(addNum(1, 2));
 
 // Arrow Functions
-const addNum2 = (x: number, y: number) => x + y;
+const addNum2 = (x: number, y: number): number => x + y;
 
 console.log(addNum2(1, 2));
+
+// Void
+function log(message: string | number): void {
+    console.log(message);
+}
+
+log("Hello");
+
+// Interfaces
+interface UserInterface {
+    // readonly id: number, if we add readonly to the property it means that the property is readonly and cannot be changed
+    id: number,
+    name: string,
+    age?: number, // optional if we add ? to the property it means that the property is optional
+}
+
+const user2: UserInterface = {
+    id: 1,
+    name: "John",
+}
+
+// Type can be used with primitive types and objects unlike using interface
+type Point = number | string;
+const p1: Point = 1;
+
+// Interfact with functions
+interface Mathfunc {
+    (x: number, y: number): number;
+}
+
+const add: Mathfunc = (x, y) => x + y;
+
+// Classes
+class Person {
+    // private id: number; // if we add private to the property it means that the property is private and cannot be accessed outside the class
+    id: number;
+    name: string;
+    age: number;
+
+    constructor(id: number, name: string, age: number) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+    }
+}
+
+const brad = new Person(1, "John", 20);
