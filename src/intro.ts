@@ -134,7 +134,15 @@ interface Mathfunc {
 const add: Mathfunc = (x, y) => x + y;
 
 // Classes
-class Person {
+
+interface PersonInterface {
+    // readonly id: number, if we add readonly to the property it means that the property is readonly and cannot be changed
+    id: number,
+    name: string,
+    register(): string;
+}
+
+class Person implements PersonInterface {
     // private id: number; // if we add private to the property it means that the property is private and cannot be accessed outside the class
     id: number;
     name: string;
@@ -145,6 +153,43 @@ class Person {
         this.name = name;
         this.age = age;
     }
+
+    register() {
+        return `${this.name} is now registered`;
+    }
 }
 
 const brad = new Person(1, "John", 20);
+
+class Employee extends Person { 
+    position: string;
+
+    constructor(id: number, name: string, position: string) {
+        super(id, name, 20);
+        this.position = position;
+    }
+}
+
+const emp = new Employee(1, "John", "Developer");
+
+console.log(emp.register());
+
+
+// Generics
+function getArray<T>(items: T[]): T[] {
+    return new Array().concat(items);
+}
+
+let numArray = getArray<number>([1, 2, 3, 4]);
+let strArray = getArray<string>(["Hello", "World", "TypeScript"]);
+
+numArray.push(5);
+strArray.push("Hello");
+
+
+
+
+
+
+
+
